@@ -18,11 +18,9 @@ module.exports = {
 
         if(!dev) {
             const response = await axios.get(`https://api.github.com/users/${github_username}`)
-    
             const {name = login, avatar_url, bio} = response.data
         
             const techsArray = parseStringAsArray(techs)
-        
             const location = {
                 type: 'Point',
                 coordinates: [longitude, latitude]
@@ -41,11 +39,43 @@ module.exports = {
         return res.json(dev)
     },
 
-    async update() {
+    async update(req, res) {
+        const github_username = req.params.id
 
+        let dev = await Dev.findOne({github_username})
+
+        if (!dev) {
+            return res.json({status: "Dev não cadastrado."})
+        }
+        
+        const response = await axios.get(`https://api.github.com/users/${github_username}`)
+        const {name = login, avatar_url, bio} = response.data
+
+        const {techs, latitude, longitude} = req.body
+        const techsArray = parseStringAsArray(techs)
+        const location = {
+            type: 'Point',
+            coordinates: [longitude, latitude]
+        }
+
+        dev.name = name
+        dev.avatar_url = avatar_url
+        dev.bio = bio
+        dev.techs = techsArray
+        dev.location = location
+
+        await dev.save()
+        
+        return res.json(dev)
     },
     
-    async destroy() {
+    async destroy(req, res) {
+        const github_username = req.params.id
 
+        let dev = await Dev.findOneAndDelete({github_username})
+
+        if (dev)  return res.json({status: `Dev ${dev.name} foi deletado.`})
+        else return res.json({status: "Dev não cadastrado."})
+        
     }
 }
