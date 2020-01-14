@@ -3,7 +3,7 @@
  <img width=200px height=200px src="icon.png" alt="DevRadar"></a>
 </p>
 
-<h3 align="center">backend</h3>
+<h3 align="center">DevRadar</h3>
 
 <div align="center">
 
