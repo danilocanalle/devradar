@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Backend destinado para a OmniStack 10.0",
+  "description": "Backend destinado para o DevRadar",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js"
