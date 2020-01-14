@@ -30,9 +30,8 @@
 
 ## 🧐 Sobre <a name = "about"></a>
 
-Este projeto é destinado para estudo da Full-Stack JavaScript.
-Sendo desenvolvido junto à semana OmniStack 10.0
-<br>
+Este projeto é destinado para estudo da Full-Stack JavaScript, sendo desenvolvido junto à semana OmniStack 10.0.
+<br><br>
 Elaborando então uma aplicação para poder cadastrar devs através da uma interface web e assim localizá-los pelo aplicativo mobile no mapa.
 
 ## ⛏️ Construído usando <a name = "built_using"></a>
