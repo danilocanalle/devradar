@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="" rel="noopener">
+  <a href="/" rel="noopener">
  <img width=200px height=200px src="icon.png" alt="DevRadar"></a>
 </p>
 
