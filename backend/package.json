@@ -1,5 +1,5 @@
 {
-  "name": "backend",
+  "name": "devradar-backend",
   "version": "1.0.0",
   "description": "Backend destinado para o DevRadar",
   "main": "index.js",
@@ -8,7 +8,7 @@
   },
   "keywords": [],
   "author": "Danilo Canalle",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "axios": "^0.19.1",
     "express": "^4.17.1",
