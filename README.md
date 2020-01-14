@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> Projeto Backend/Web/Mobile.
+<p align="center"> Projeto Completo (Backend/Web/Mobile).
     <br> 
 </p>
 
