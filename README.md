@@ -45,4 +45,4 @@ Sendo desenvolvido junto à semana OmniStack 10.0
 
 - [@danilo900](https://github.com/danilo900) - Developer
 
-Ideia e mentor do projeto [diego3g](https://github.com/diego3g).
+Ideia e mentor do projeto [@diego3g](https://github.com/diego3g).
