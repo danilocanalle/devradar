@@ -24,7 +24,9 @@
 
 - [Sobre](#about)
 - [Authors](#authors)
-- [Backend](tree/master/backend)
+- [Backend - Node](https://github.com/danilo900/devradar/tree/master/backend)
+- [Website - ReactJS](https://github.com/danilo900/devradar/tree/master/web)
+- [Mobile - React Native](https://github.com/danilo900/devradar/tree/master/mobile)
 
 ## 🧐 Sobre <a name = "about"></a>
 
