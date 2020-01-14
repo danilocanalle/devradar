@@ -24,7 +24,7 @@
 
 - [Sobre](#about)
 - [Authors](#authors)
-- [Backend - Node](https://github.com/danilo900/devradar/tree/master/backend)
+- [Backend - Node](backend)
 - [Website - ReactJS](https://github.com/danilo900/devradar/tree/master/web)
 - [Mobile - React Native](https://github.com/danilo900/devradar/tree/master/mobile)
 
