@@ -23,8 +23,8 @@
 ## 📝 Tabela de conteúdos
 
 - [Sobre](#about)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
+- [Backend](tree/master/backend)
 
 ## 🧐 Sobre <a name = "about"></a>
 
