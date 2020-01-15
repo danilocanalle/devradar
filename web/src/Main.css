@@ -9,36 +9,14 @@ main ul {
   list-style: none;
 }
 
+main ul p {
+    color: white;
+    font-size: 14px;
+    font-style: italic;
+}
+
 @media (max-width: 650px) {
     main ul {
         grid-template-columns: 1fr;
     }
-}
-
-.user-info strong {
-    display: block;
-    font-size: 16px;
-    color: #333;
-}
-
-.user-info span {
-    font-size: 13px;
-    color: #999;
-    margin-top: 2px;
-}
-
-li.dev-item p {
-    color: #666666;
-    font-size: 14px;
-    line-height: 20px;
-    margin: 10px 0;
-}
-
-li.dev-item a {
-    color: #48a0dc;
-    font-size: 14px;
-    text-decoration: none;
-}
-li.dev-item a:hover {
-    color: #2b77ab;
 }

@@ -18,12 +18,14 @@ TODO:
 function App() {
 
   const [devs, setDevs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadDevs() {
       const response = await api.get('/devs');
 
       setDevs(response.data)
+      //setLoading(false);
     }
 
     loadDevs()
@@ -44,9 +46,14 @@ function App() {
 
       <main>
         <ul>
-          {devs.map(dev => (
+          {
+          loading ? (
+            <p>Carregando devs...</p>
+          ) : (
+          devs.map(dev => (
             <DevItem key={dev._id} dev={dev} />
-          ))}
+          )))
+          }
         </ul>
       </main>
     </div>
