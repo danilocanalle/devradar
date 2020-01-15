@@ -25,7 +25,7 @@ function App() {
       const response = await api.get('/devs');
 
       setDevs(response.data)
-      //setLoading(false);
+      setLoading(false);
     }
 
     loadDevs()
