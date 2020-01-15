@@ -23,7 +23,7 @@
 ## 📝 Tabela de conteúdos
 
 - [Sobre](#about)
-- [Authors](#authors)
+- [Autores](#authors)
 - [Backend - Node](backend)
 - [Website - ReactJS](web)
 - [Mobile - React Native](mobile)
