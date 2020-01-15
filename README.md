@@ -30,7 +30,7 @@
 
 ## 🧐 Sobre <a name = "about"></a>
 
-Este projeto é destinado para estudo da Full-Stack JavaScript, sendo desenvolvido junto à semana OmniStack 10.0 da @Rocketseat.
+Este projeto é destinado para estudo da Full-Stack JavaScript, sendo desenvolvido junto à semana OmniStack 10.0 da [@Rocketseat](https://github.com/Rocketseat).
 <br><br>
 Elaborando então uma aplicação para poder cadastrar devs através da uma interface web e assim localizá-los pelo aplicativo mobile no mapa.
 
