@@ -8,10 +8,17 @@ module.exports = {
 
         const techsArray = parseStringAsArray(techs)
 
+        // case insensitive search
+        const optRegexp = [];
+        techsArray.forEach(function(opt){
+            optRegexp.push(  new RegExp(opt, "i") );
+        });
+
         const devs = await Dev.find({
             techs: {
-                $in: techsArray,
+               $in: optRegexp
             },
+            /*
             location: {
                 $near: {
                     $geometry: {
@@ -21,6 +28,7 @@ module.exports = {
                     $maxDistance: 10000 //metros
                 }
             }
+            */
         })
         
         return res.json({devs})

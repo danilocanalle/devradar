@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity, Platform, KeyboardAvoidingView } from 'react-native'
 import MapView, {Marker, Callout} from 'react-native-maps'
 import { requestPermissionsAsync, getCurrentPositionAsync} from 'expo-location'
 import { MaterialIcons } from '@expo/vector-icons'
@@ -10,6 +10,25 @@ function Main({navigation}) {
     const [devs, setDevs] = useState([])
     const [currentRegion, setCurrentRegion] = useState(null)
     const [techs, setTechs] = useState('')
+
+    const [longitude, setLongitude] = useState("");
+    const [latitude, setLatitude] = useState("");
+
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition(
+            position => {
+                const { latitude, longitude } = position.coords;
+                setLatitude(latitude);
+                setLongitude(longitude);
+            },
+            error => {
+                console.log(error);
+            },
+            {
+                timeout: 30000
+            }
+        );
+    }, []);
 
     useEffect(() => {
         async function loadInitialPosition() {
@@ -46,7 +65,7 @@ function Main({navigation}) {
                 techs
             }
         })
-
+        
         setDevs(response.data.devs)
     }
 
@@ -60,7 +79,10 @@ function Main({navigation}) {
 
     return (
         <>
-            <MapView onRegionChangeComplete={handleRegionChanged} initialRegion={currentRegion} style={styles.map}>
+            <MapView posi onRegionChangeComplete={handleRegionChanged} initialRegion={currentRegion} style={styles.map}>
+
+                <Marker coordinate={{longitude, latitude}} ></Marker>
+
                 {devs.map(dev => (
                     <Marker
                      key={dev._id}
@@ -83,9 +105,14 @@ function Main({navigation}) {
                 </Marker>
                 ))}
             </MapView>
+            
+            
 
-
-            <KeyboardAvoidingView keyboardVerticalOffset="55" behavior="position" enabled>
+             <KeyboardAvoidingView
+                keyboardVerticalOffset={Platform.OS === "ios" && "55" }
+                behavior={Platform.OS === 'ios' && "position"}
+                enabled
+            >
                 <View style={styles.searchForm}>
                     <TextInput 
                     style={styles.searchInput}
