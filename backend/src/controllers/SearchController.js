@@ -18,7 +18,6 @@ module.exports = {
             techs: {
                $in: optRegexp
             },
-            /*
             location: {
                 $near: {
                     $geometry: {
@@ -28,7 +27,6 @@ module.exports = {
                     $maxDistance: 10000 //metros
                 }
             }
-            */
         })
         
         return res.json({devs})
