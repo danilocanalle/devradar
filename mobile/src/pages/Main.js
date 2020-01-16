@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity, Platform, KeyboardAvoidingView } from 'react-native'
+import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native'
 import MapView, {Marker, Callout} from 'react-native-maps'
 import { requestPermissionsAsync, getCurrentPositionAsync} from 'expo-location'
 import { MaterialIcons } from '@expo/vector-icons'
@@ -15,22 +15,6 @@ function Main({navigation}) {
     const [latitude, setLatitude] = useState("");
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(
-            position => {
-                const { latitude, longitude } = position.coords;
-                setLatitude(latitude);
-                setLongitude(longitude);
-            },
-            error => {
-                console.log(error);
-            },
-            {
-                timeout: 30000
-            }
-        );
-    }, []);
-
-    useEffect(() => {
         async function loadInitialPosition() {
             const {granted} = await requestPermissionsAsync()
 
@@ -40,6 +24,9 @@ function Main({navigation}) {
                 })
 
                 const { latitude, longitude } = coords
+
+                setLatitude(latitude);
+                setLongitude(longitude);
                 
                 setCurrentRegion({
                     latitude,
@@ -55,8 +42,6 @@ function Main({navigation}) {
     async function loadDeves() {
         
         const {latitude, longitude} = currentRegion
-
-        console.log(latitude, longitude);
 
         const response = await api.get('/search', {
             params: {
@@ -78,8 +63,8 @@ function Main({navigation}) {
     }
 
     return (
-        <>
-            <MapView posi onRegionChangeComplete={handleRegionChanged} initialRegion={currentRegion} style={styles.map}>
+        <View style={{flex:1}}>
+            <MapView posionRegionChangeComplete={handleRegionChanged} initialRegion={currentRegion} style={styles.map}>
 
                 <Marker coordinate={{longitude, latitude}} ></Marker>
 
@@ -105,13 +90,11 @@ function Main({navigation}) {
                 </Marker>
                 ))}
             </MapView>
-            
-            
-
-             <KeyboardAvoidingView
-                keyboardVerticalOffset={Platform.OS === "ios" && "55" }
-                behavior={Platform.OS === 'ios' && "position"}
-                enabled
+           
+            <KeyboardAvoidingView
+                keyboardVerticalOffset={Platform.OS === "ios" ? "55" : "70"}
+                behavior="padding"
+                style={styles.keyboardAvoidView}
             >
                 <View style={styles.searchForm}>
                     <TextInput 
@@ -128,19 +111,20 @@ function Main({navigation}) {
                     </TouchableOpacity>
                 </View>
             </KeyboardAvoidingView>
-        </>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     map: {
-        flex: 1
+        flex: 1,
     },
     avatar: {
         width: 54,
         height: 54,
-        borderRadius: 4,
-        borderWidth: 4
+        borderRadius: 50,
+        borderWidth: 2,
+        borderColor: "#000"
     },
     callout: {
         width: 260
@@ -156,14 +140,17 @@ const styles = StyleSheet.create({
     devTechs: {
         marginTop: 5,
     },
-    
-    searchForm: {
+    keyboardAvoidView: {
         position: "absolute",
-        bottom: 20,
-        left: 20,
-        right: 20,
+        bottom: 0,
+        left: 0,
+        right: 0,
         zIndex: 5,
+    },
+    searchForm: {
         flexDirection: "row",
+        paddingHorizontal: 20,
+        paddingBottom: 20
     },
     searchInput: {
         flex: 1,
