@@ -6,6 +6,7 @@ import Routes from './src/routes'
 YellowBox.ignoreWarnings([
   'Unrecognized WebSocket'
 ])
+console.ignoredYellowBox = ['Unrecognized WebSocket']
 
 export default function App() {
   return (
