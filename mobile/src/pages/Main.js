@@ -5,6 +5,7 @@ import { requestPermissionsAsync, getCurrentPositionAsync} from 'expo-location'
 import { MaterialIcons } from '@expo/vector-icons'
 
 import api from '../services/api'
+import {connect, disconnect, subscribeToNewDevs} from '../services/socket'
 
 function Main({navigation}) {
     const [devs, setDevs] = useState([])
@@ -39,6 +40,22 @@ function Main({navigation}) {
         loadInitialPosition()
     }, [])
 
+    useEffect(() => {
+        subscribeToNewDevs(dev => setDevs([...devs, dev]))
+    }, [devs])
+
+    function setupWebsocket() {
+        disconnect()
+
+        const {latitude, longitude} = currentRegion
+
+        connect(
+            latitude,
+            longitude,
+            techs
+        )
+    }
+
     async function loadDeves() {
         
         const {latitude, longitude} = currentRegion
@@ -52,6 +69,7 @@ function Main({navigation}) {
         })
         
         setDevs(response.data.devs)
+        setupWebsocket()
     }
 
     function handleRegionChanged(region) {
@@ -63,7 +81,7 @@ function Main({navigation}) {
     }
 
     return (
-        <View style={{flex:1}}>
+        <>
             <MapView posionRegionChangeComplete={handleRegionChanged} initialRegion={currentRegion} style={styles.map}>
 
                 <Marker coordinate={{longitude, latitude}} ></Marker>
@@ -92,9 +110,10 @@ function Main({navigation}) {
             </MapView>
            
             <KeyboardAvoidingView
-                keyboardVerticalOffset={Platform.OS === "ios" ? "55" : "70"}
-                behavior="padding"
+                keyboardVerticalOffset={Platform.OS === "ios" ? "55" : "65"}
+                behavior="position"
                 style={styles.keyboardAvoidView}
+                enabled
             >
                 <View style={styles.searchForm}>
                     <TextInput 
@@ -111,7 +130,7 @@ function Main({navigation}) {
                     </TouchableOpacity>
                 </View>
             </KeyboardAvoidingView>
-        </View>
+        </>
     )
 }
 
@@ -145,7 +164,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
         right: 0,
-        zIndex: 5,
+        zIndex: 5
     },
     searchForm: {
         flexDirection: "row",
